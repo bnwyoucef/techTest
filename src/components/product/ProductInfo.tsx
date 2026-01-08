@@ -1,4 +1,5 @@
 import { Box, Typography, Rating, Chip, Divider } from '@mui/material';
+import { memo } from 'react';
 import Button from '../common/Button';
 import { productDetailStyles } from '../../pages/ProductDetail.styles';
 import type { GlobalRating, Buybox, Review } from '../../types/product.types';
@@ -12,7 +13,7 @@ interface ProductInfoProps {
   reviews?: Review[];
 }
 
-export const ProductInfo = ({
+const ProductInfoComponent = ({
   headline,
   globalRating,
   buybox,
@@ -143,5 +144,7 @@ export const ProductInfo = ({
     </Box>
   );
 };
+
+export const ProductInfo = memo(ProductInfoComponent);
 
 export default ProductInfo;

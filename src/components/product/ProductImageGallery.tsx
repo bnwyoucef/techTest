@@ -1,5 +1,5 @@
 import { Box } from '@mui/material';
-import { useState } from 'react';
+import { useState, memo } from 'react';
 import { productDetailStyles } from '../../pages/ProductDetail.styles';
 
 interface ProductImageGalleryProps {
@@ -7,7 +7,7 @@ interface ProductImageGalleryProps {
   productName: string;
 }
 
-export const ProductImageGallery = ({ images, productName }: ProductImageGalleryProps) => {
+const ProductImageGalleryComponent = ({ images, productName }: ProductImageGalleryProps) => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
   return (
@@ -16,6 +16,7 @@ export const ProductImageGallery = ({ images, productName }: ProductImageGallery
         component="img"
         src={images[selectedImageIndex]}
         alt={productName}
+        loading="eager"
         sx={productDetailStyles.mainImage}
       />
 
@@ -28,6 +29,7 @@ export const ProductImageGallery = ({ images, productName }: ProductImageGallery
               component="img"
               src={imageUrl}
               alt={`${productName} - ${index + 1}`}
+              loading="lazy"
               onClick={() => setSelectedImageIndex(index)}
               sx={productDetailStyles.thumbnail(selectedImageIndex === index)}
             />
@@ -37,5 +39,7 @@ export const ProductImageGallery = ({ images, productName }: ProductImageGallery
     </Box>
   );
 };
+
+export const ProductImageGallery = memo(ProductImageGalleryComponent);
 
 export default ProductImageGallery;
