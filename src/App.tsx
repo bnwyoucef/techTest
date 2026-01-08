@@ -1,11 +1,8 @@
-import { Typography } from '@mui/material'
+import ProductDetail from './pages/ProductDetail'
 
 function App() {
-
   return (
-    <>
-      <Typography variant="h1">Technical test</Typography>
-    </>
+    <ProductDetail productId={10735101964} />
   )
 }
 
